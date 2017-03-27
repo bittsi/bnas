@@ -1,0 +1,13 @@
+#
+# Delete and recreate config directory
+#
+# Include it in an Ansible play
+#
+---
+- name: remove potentially existing previous candidate config directories
+  file: path={{config_dir}}/{{inventory_hostname}} state=absent
+- name: create candidate config directory
+  file: path={{config_dir}}/{{inventory_hostname}} state=directory
+
+  
+

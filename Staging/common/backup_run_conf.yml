@@ -1,0 +1,22 @@
+#
+# backup running-config task
+# 
+# Include it in an Ansible play
+#
+---
+- name: "backup run_conf file with napalm"
+  napalm_get_facts:
+    hostname: "{{oob_ip}}"
+    username: "{{adminUID}}"
+    dev_os: "{{dev_os}}"
+    password: "{{adminPW}}"
+    timeout: 120
+    optional_args: {'global_delay_factor': 4}
+    filter:
+      - "config"
+  register: config
+
+- name: "copy file into {{device_backup_dir}}"
+  copy:
+    content: "{{ config.ansible_facts.config.running }}"
+    dest:  "{{ file_name }}"

@@ -1,0 +1,2780 @@
++service timestamps debug datetime msec localtime show-timezone
++service timestamps log datetime msec localtime show-timezone
++service password-encryption
++logging buffered 128000
++logging reload errors
++logging trap warnings
++enable secret pass
++username admin privilege 15 password pass
++aaa new-model
+-no aaa authentication fail-message
++aaa authentication fail-message /
++***************************************************************
++* *
++* Unauthorized login attempt, event logged. *
++* *
++* UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED *
++* *
++***************************************************************
++/
++aaa authentication login default local
++aaa authorization exec default local
++aaa session-id common
++clock timezone MET 1 0
++clock summer-time MEST recurring last Sun Mar 2:00 last Sun Oct 3:00
++ip domain-name bnas.local
+-no ip domain-lookup
++ip host tftp 1.1.1.1
+-no setup express
++archive
++ path flash:
++spanning-tree mode rapid-pvst
++port-channel load-balance src-dst-ip
++vlan group VLANGRP0 vlan-list 1000
++vlan group VLANGRP1 vlan-list 1001
++vlan 1000,1001
++ip telnet source-interface Vlan123
++ip ftp source-interface Vlan123
++ip tftp source-interface Vlan123
++ip ssh source-interface Vlan123
++stack-mac persistent timer 0
++lldp run
++interface Vlan1
++ description *** not used - admin/down ***
++vlan 123
++interface Vlan123
++ description *** Mgmt-Interface ***
++ ip address 10.82.33.238 255.255.255.0
+- no shutdown
++ip default-gateway 10.82.10.1
++mls qos
++mls qos srr-queue output dscp-map queue 1 threshold 3 46
++mls qos srr-queue output dscp-map queue 2 threshold 3 48 56
++mls qos srr-queue output dscp-map queue 3 threshold 3 16 18
++interface GigabitEthernet1/0/1
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/2
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/3
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/4
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/5
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/6
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/7
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/8
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/9
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/10
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/11
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/12
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/13
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/14
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/15
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/16
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/17
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/18
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/19
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/20
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/21
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/22
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/23
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/24
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/25
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/26
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/27
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/28
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/29
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/30
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/31
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/32
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/33
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/34
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/35
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/36
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/37
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/38
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/39
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/40
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/41
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/42
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/43
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/44
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/45
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/46
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/47
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet1/0/48
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface TenGigabitEthernet1/0/1
++ description *** Uplink Port ***
++ switchport mode trunk
++ switchport nonegotiate
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
++ mls qos trust dscp
++ udld port aggressive
++ logging event trunk-status
++ channel-group 1 mode active
++interface TenGigabitEthernet1/0/2
++ description *** not used ***
++ shutdown
++interface GigabitEthernet2/0/1
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/2
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/3
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/4
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/5
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/6
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/7
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/8
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/9
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/10
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/11
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/12
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/13
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/14
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/15
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/16
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/17
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/18
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/19
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/20
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/21
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/22
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/23
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/24
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/25
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/26
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/27
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/28
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/29
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/30
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/31
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/32
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/33
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/34
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/35
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/36
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/37
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/38
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/39
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/40
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/41
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/42
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/43
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/44
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/45
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/46
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/47
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet2/0/48
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface TenGigabitEthernet2/0/1
++ description *** not used ***
++ shutdown
++interface TenGigabitEthernet2/0/2
++ description *** not used ***
++ shutdown
++interface GigabitEthernet3/0/1
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/2
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/3
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/4
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/5
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/6
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/7
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/8
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/9
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/10
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/11
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/12
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/13
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/14
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/15
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/16
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/17
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/18
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/19
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/20
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/21
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/22
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/23
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/24
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/25
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/26
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/27
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/28
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/29
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/30
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/31
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/32
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/33
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/34
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/35
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/36
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/37
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/38
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/39
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/40
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/41
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/42
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/43
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/44
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/45
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/46
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/47
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface GigabitEthernet3/0/48
++ description <LS:C> *** Access Port ***
++ switchport access vlan 1000
++ switchport mode access
++ switchport nonegotiate
++ switchport voice vlan 1001
+- no logging event link-status
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
+- no snmp trap link-status
++ storm-control broadcast level 1.00
++ storm-control multicast level 5.00
++ storm-control action shutdown
++ storm-control action trap
++ spanning-tree portfast
++ spanning-tree bpduguard enable
++ spanning-tree guard root
+- no cdp enable
++interface TenGigabitEthernet3/0/1
++ description *** Uplink Port ***
++ switchport mode trunk
++ switchport nonegotiate
++ srr-queue bandwidth share 1 1 15 83
++ priority-queue out
++ mls qos trust dscp
++ udld port aggressive
++ logging event trunk-status
++ channel-group 1 mode active
++interface TenGigabitEthernet3/0/2
++ description *** not used ***
++ shutdown
++interface Port-channel1
++ description *** Uplink Port ***
++ switchport mode trunk
++ switchport nonegotiate
++ logging event trunk-status
++ ip dhcp snooping trust
++ ip dhcp snooping limit rate 500
+- no shutdown
++ip ssh maxstartups 50
++ip ssh source-interface Vlan123
++ip ssh version 2
++ip ssh dscp 48
++access-list 1 remark *** VTY ACL ***
++access-list 1 permit 0.0.0.0 255.255.255.255
++access-list 82 remark *** SNMP RW-Access ***
++access-list 82 permit 4.4.4.0 0.0.0.255
++access-list 82 permit 5.5.5.0 0.0.0.255
++access-list 82 deny 6.6.6.0 0.0.0.255
++access-list 20 remark *** SNMP Customer RO-Access ***
++access-list 20 permit 11.11.11.0 0.0.0.255
++access-list 81 remark *** SNMP RO-Access ***
++access-list 81 permit 1.1.1.0 0.0.0.255
++access-list 81 permit 2.2.2.0 0.0.0.255
++access-list 81 deny 3.3.3.0 0.0.0.255
++snmp-server system-shutdown
++snmp-server enable traps snmp authentication linkdown linkup coldstart
++snmp-server enable traps config
++snmp-server host 3.3.3.3 esesIP snmp
++snmp-server host 4.4.4.4 esesIP snmp
++snmp-server view CUSTOMER_VIEW mib-2 included
++snmp-server view CUSTOMER_VIEW cisco included
++snmp-server view CUSTOMER_VIEW internet.6 included
++snmp-server view CUSTOMER_VIEW ciscoConfig excluded
++snmp-server view CUSTOMER_VIEW ciscoConfigCopyMIB excluded
++snmp-server community roCommunity RO 81
++snmp-server community rwCommunity RW 82
++snmp-server community roCommunityCustomer view CUSTOMER_VIEW RO 20
++snmp-server location Strasse 31 CH-4831 Ort
+-no banner exec
++banner exec /
++Customer Name: BNAS Test customer
++Switch Name: test_48_3-1
++Switch Model: WS-C2960X-48PD-L; Stack, 3 Stackmember
++Location: Strasse 31 CH-4831 Ort
++*******************************************************************
++* *
++* UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED *
++* *
++* *
++* NOTICE: Access to this device is restricted to authorized *
++* agents of Swisscom (Switzerland) Ltd. only. *
++* *
++* Accessing this device for any reason without *
++* appropriate authorization is not permitted. *
++* *
++*******************************************************************
++/
+-no banner motd
++banner motd /
++***************************************************************
++* *
++* UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED *
++* *
++***************************************************************
++/
++alias exec srb show run | begin
++alias exec sri show run | include
++alias exec w copy running-config startup-config
++alias exec v show running-config
++alias exec b show ip interface brief
++alias exec c configure terminal
++line con 0
++ exec-timeout 20 0
++ vacant-message /
++Your login time is expired !
++If you need my services again, hit <RETURN> to call me back.
++/
++ stopbits 1
++ flowcontrol software
++line vty 0 4
++ access-class 1 in
++ exec-timeout 20 0
++ vacant-message /
++Your login time is expired !
++If you need my services again, hit <RETURN> to call me back.
++/
++ logging synchronous
++ transport preferred none
++ transport input telnet ssh
++ transport output telnet ssh
++line vty 5 15
++ access-class 1 in
++ exec-timeout 20 0
++ vacant-message /
++Your login time is expired !
++If you need my services again, hit <RETURN> to call me back.
++/
++ logging synchronous
++ transport preferred none
++ transport input telnet ssh
++ transport output telnet ssh
++ntp source Vlan123
++ntp server 8.8.8.8 prefer

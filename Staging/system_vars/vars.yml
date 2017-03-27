@@ -1,0 +1,4 @@
+---
+config_dir: "{{inventory_dir}}/config_generated"
+configlog_dir: "{{inventory_dir}}/config_log"
+backup_dir: "{{inventory_dir}}/config_backup"

@@ -1,0 +1,17 @@
+---
+switchType: WS-C2960X-48PD-L; Stack, 2 Stackmember
+switchProvisioning: ws-c2960x-48fpd-l
+stackMembers: 2
+accessPorts: 48
+uplinkPorts1G_range:
+  - 49
+  - 50
+uplinkPorts1G_used: 
+  - '1/0/49'
+  - '2/0/49'
+uplinkPorts10G_range:
+  - 1
+  - 2
+uplinkPorts10G_used: 
+  - '1/0/1'
+  - '2/0/1'

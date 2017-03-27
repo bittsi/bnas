@@ -1,0 +1,18 @@
+#
+# Generate config files for switches. Tasks and Templates are defined in the roles directory
+# Before execution the config directory for the device is deleted and recreated 
+#
+---
+- name: generate config files for switches
+  gather_facts: False
+  hosts: switch
+  connection: local
+  vars_files:
+    - "{{inventory_dir}}/system_vars/vars.yml"
+
+  
+  pre_tasks:
+  - include: pretasks.yml
+
+  roles:
+    - switch

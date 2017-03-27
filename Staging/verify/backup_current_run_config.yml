@@ -1,0 +1,25 @@
+#
+# Backup current running-config.
+# This config file will be used to verify that there were no manually changes made on the device.
+#
+---
+- name: backup current running config
+  hosts: all
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "{{inventory_dir}}/system_vars/vars.yml"
+    - "{{inventory_dir}}/service_vars/{{inventory_hostname}}.yml"
+
+  vars:
+    device_backup_dir: "{{backup_dir}}/{{inventory_hostname}}"
+    provider:
+      host: "{{oob_ip}}"
+      username: "{{adminUID}}"
+      password: "{{adminPW}}"
+      transport: cli
+
+  tasks:
+    - include: "{{ inventory_dir }}/common/backup_run_conf.yml" 
+      vars:
+        file_name: "{{device_backup_dir}}/{{inventory_hostname}}_current_run.conf"

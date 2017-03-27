@@ -1,0 +1,30 @@
+#
+# Get DHCP assigned address and save it
+# 
+# Include it in an Ansible play
+#
+---
+- name: get dhcp assgined IP address on OoB interface
+  expect:
+    command: ssh -l {{ts_username}} {{ts_hostname}}
+    timeout: 10
+    responses:
+      'password:': "{{ts_password}}"
+      'Your selection:': 
+        - "p{{ts_port}}"
+      '.*Open': 
+        - "\r\n"
+      '.*Switch>':
+        - "enable"
+      '.*Switch#':
+        - "sh ip int brie | i FastEthernet0"
+        - "end\rexit\r$"
+    echo: yes
+  register: results
+- name: set OoB IP address as fact
+  set_fact:
+    oob_ip: "{{results.stdout | regex_search('FastEthernet0\\s+(?P<ip>\\d+\\.\\d+\\.\\d+\\.\\d+)\\s+.*DHCP.*','\\g<ip>') | join}}"
+- include: "save_vars.yml"
+
+
+

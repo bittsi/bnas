@@ -1,0 +1,9 @@
+{# 
+	Iterate over hostvars for a particular host
+	Write out needed data as key-/value-pairs in json-format (can be used to dump in yaml-file)
+#}
+{% for key,value in allhosts[inventory_hostname]|dictsort %}
+{% if key == "oob_ip" %}
+{{key}}: {{value |to_json}}
+{% endif %}
+{% endfor %}

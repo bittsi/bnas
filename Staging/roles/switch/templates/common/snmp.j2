@@ -1,0 +1,24 @@
+! ------------------------------------------------------------------
+! Start Template: {{ self._TemplateReference__context.name }}
+!
+!
+snmp-server system-shutdown
+snmp-server enable traps snmp authentication linkdown linkup coldstart
+snmp-server enable traps config
+snmp-server host {{ snmp.server1 }} esesIP  snmp
+snmp-server host {{ snmp.server2 }} esesIP  snmp
+!
+snmp-server view CUSTOMER_VIEW mib-2 included
+snmp-server view CUSTOMER_VIEW cisco included
+snmp-server view CUSTOMER_VIEW internet.6 included
+snmp-server view CUSTOMER_VIEW ciscoConfig excluded
+snmp-server view CUSTOMER_VIEW ciscoConfigCopyMIB excluded
+snmp-server community {{ snmp.roCommunity }} RO 81
+snmp-server community {{ snmp.rwCommunity }} RW 82
+snmp-server community {{ snmp.roCommunityCustomer }} view CUSTOMER_VIEW RO 20
+snmp-server location {{ location.street }} {{ location.postCode }} {{ location.location }}
+!
+!
+! End Template: {{ self._TemplateReference__context.name }}
+! ------------------------------------------------------------------
+

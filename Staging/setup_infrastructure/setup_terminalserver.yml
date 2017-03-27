@@ -1,0 +1,33 @@
+---
+- name:  "Infrastructure setup"
+  hosts: localhost
+  gather_facts: no
+  connection: local
+
+  vars_files:
+    - "{{inventory_dir}}/infrastructure_vars/terminalservers.yml"
+
+  vars_prompt:
+    - name: "ts_id"
+      prompt: "Staging Rack:"
+      default: "3"
+      private: no
+
+    - name: "ts_username"
+      prompt: "Username:"
+      default: "admin"
+      private: no
+
+    - name: "ts_password"
+      prompt: "Password:"
+      default: "pass"
+      private: yes
+
+  tasks:
+    - include: save_vars_prompt.yml
+      run_once: true
+    - debug:
+        msg: "{{terminalservers[ts_id|int]}}"
+
+
+

@@ -1,0 +1,10 @@
+
+#
+# This module creates a text file from a Jinja2 template
+#
+---
+- template: src="text.j2" dest="{{reports}}/{{modulename}}.log"
+  vars: 
+    allhosts: "{{hostvars}}"
+  run_once: true
+

@@ -1,0 +1,34 @@
+#
+# Verifiy if switch is in intial config mode dialog and disable it
+# 
+# Include it in an Ansible play
+#
+---
+- name: connect to switch via terminalserver and disable intial config dialog
+  expect:
+    command: ssh -l {{ts_username}} {{ts_hostname}}
+    timeout: 10
+    responses:
+      'password:': "{{ts_password}}"
+      'Your selection:': 
+        - "p{{ts_port}}"
+      '.*Open':
+        - "\r\n"
+      '.*initial configuration dialog\? \[yes/no\].*':
+        - "no"
+      '.*terminate autoinstall\? \[yes\].*':
+        - "yes"
+      '.*Switch>':
+        - "$"      
+    echo: no
+  ignore_errors: yes
+  register: results
+- name: assert that switch was in initial config dialog
+  assert:
+    that: 
+      - "'initial configuration dialog' in results.stdout"
+      - "'Switch>' in results.stdout"
+    msg: "The device is not in initial config moder or the line is in use"
+
+      
+

@@ -1,0 +1,28 @@
+!# ------------------------------------------------------------------
+!# Start: Core Switch Config Main for {{ inventory_hostname }}
+!# ------------------------------------------------------------------
+!
+!
+{# Headers #}
+{% include 'common/header.j2' %}
+!
+{# Common BaseConfig Part 1#}
+{% include 'common/baseConfigPart1.j2' %}
+!
+{# Core Switch specific configs #}
+!
+{# Several Common Modulea#}
+{% include 'common/ssh.j2' %}
+{% include 'common/acl.j2' %}
+{% include 'common/snmp.j2' %}
+!
+{# Common BaseConfig Part 2#}
+{% include 'common/baseConfigPart2.j2' %}
+!
+{# Footers #}
+{% include 'common/footer.j2' %}
+!
+!
+!# ------------------------------------------------------------------
+!# End: Core Switch Config Main for {{ inventory_hostname }}
+!# ------------------------------------------------------------------

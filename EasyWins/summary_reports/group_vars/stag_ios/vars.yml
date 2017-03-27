@@ -1,0 +1,9 @@
+---
+cli:
+  host: "{{ inventory_hostname }}"
+  username: "{{ vault_username }}"
+  password: "{{ vault_password }}"
+  transport: cli
+  timeout: 30
+os: ios
+

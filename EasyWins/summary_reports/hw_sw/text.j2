@@ -1,0 +1,7 @@
+{# 
+	Generate HW/SW-Report as text-file
+#}
+{{'%-20s %-20s %-10s %-15s'|format("Hostname","HW-Type","OS-Type","SW-Version")}}
+{% for host,facts in allhosts|dictsort %}
+{{'%-20s %-20s %-10s %-15s'|format(facts.inventory_hostname,facts.hw_type,facts.os_type,facts.sw_version)}}
+{% endfor %}

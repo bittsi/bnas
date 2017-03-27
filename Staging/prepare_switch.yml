@@ -1,0 +1,9 @@
+---
+- include: prepare/setup_ssh.yml
+- include: prepare/collect_ssh-keys.yml
+- include: prepare/access-switch_prepare.yml
+
+
+
+
+

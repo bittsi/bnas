@@ -1,0 +1,17 @@
+{# 
+	Generate HW/SW-Report as html file
+#}
+<html>
+<head>
+  <title>Hardware and Software report</title>
+</head>
+<body>
+  <h1>Hardware and Software report</h1>
+  <table border="1">
+    <tr><th>Hostname</th><th>HW-Type</th><th>OS-Type</th><th>SW-Version</th></tr>
+{% for host,facts in allhosts|dictsort %}
+    <tr><td>{{facts.inventory_hostname}}</td><td>{{facts.hw_type}}</td><td>{{facts.os_type}}</td><td>{{facts.sw_version}}</td></tr>
+{% endfor %}
+  </table>
+    <br>Report generated: {{datetime}}
+</body>

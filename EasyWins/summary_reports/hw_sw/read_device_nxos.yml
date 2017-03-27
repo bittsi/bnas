@@ -1,0 +1,13 @@
+# Read NX-OS facts
+# 
+# Include it in an Ansible play
+#
+---
+- nxos_facts:
+    gather_subset: hardware
+    provider: "{{ cli }}"
+  register: result
+- set_fact:
+    sw_version: "{{ansible_net_version}}"
+    os_type: "NX-OS"
+    hw_type: "{{ansible_net_model}}"

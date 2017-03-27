@@ -1,0 +1,29 @@
+! ------------------------------------------------------------------
+! Start Template: {{ self._TemplateReference__context.name }}
+!
+!
+{% if "WS-C2960CX-8PC-L" not in switchType %}
+stack-mac persistent timer 0
+{% endif %}
+!
+lldp run
+!
+interface Vlan1
+ description *** not used - admin/down ***
+ no ip address
+ shutdown
+!
+{% if 'Vlan' in mgmtInt %}
+vlan {{ mgmtInt|replace("Vlan", "") }} 
+{% endif %}
+!
+interface {{ mgmtInt }}
+ description *** Mgmt-Interface ***
+ ip address {{ mgmt.ip }} {{ mgmt.mask }}
+ no shutdown
+!
+ip default-gateway {{ mgmt.gw }}
+!
+! End Template: {{ self._TemplateReference__context.name }}
+! ------------------------------------------------------------------
+

@@ -1,0 +1,34 @@
+#
+# This main playbook does the following:
+# - generate:		Generates switch configurations (initial config and full config)
+# - prepare:		Prepares the switch for SSH connections (connects via terminalserver) and gets the switch ready for config replacement (e.g. archive flash, remove certificate)
+# - replace:		Replaces the initial config on the switches (the replacement file must be a complete configuration)
+# - merge:			Merges the full config on the switches and saves the running config as a backup config afterwards
+# - verify:			Verifies that the running config is equal to the backup config
+#
+# The above listed jobs are defined in playbooks. Each of these playbooks can be run individually or invoked with tags (see README)
+# 
+# Dependencies:
+# To configure the devices, the playbook "setup_infrastructure.yml" must have been run before this playbook.
+#
+---
+- include: "init_staging.yml"
+  tags: 
+    - always
+- include: "generate_config.yml"
+  tags: 
+    - generate
+- include: "prepare_switch.yml"
+  tags: 
+    - prepare
+- include: "replace_initial_config.yml"
+  tags:
+    - replace
+- include: "merge_full_config.yml"
+  tags:
+    - merge
+- include: "verify_full_config.yml"
+  tags:
+    - verify
+
+

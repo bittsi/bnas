@@ -1,0 +1,71 @@
+#
+# Copy original and current run_conf file before modification. Remove known lines (e.g. last config change) in the copied files (modified).
+# Find diffs between the two files. If there are diffs save them into a file fail play.
+#
+---
+- name: check for diffs between origninal and current run_conf file
+  hosts: all
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "{{inventory_dir}}/system_vars/vars.yml"
+
+  vars:
+    original_run_conf_file: "{{backup_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_original_run.conf"
+    current_run_conf_file: "{{backup_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_current_run.conf"
+    original_run_conf_file_mod: "{{backup_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_original_run.conf.mod"
+    current_run_conf_file_mod: "{{backup_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_current_run.conf.mod"
+    diff_file: "{{backup_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_diff.txt"
+    exclude_lines:
+      - '! Last configuration change'
+      - '! NVRAM config last updated'
+      - 'Current configuration :'
+
+  tasks:
+  - name: remove potentially existing previous diff file
+    file: path={{ diff_file }} state=absent
+
+  - name: "copy original run_conf file before modification"
+    copy:
+      src: "{{ original_run_conf_file }}"
+      dest: "{{ original_run_conf_file_mod }}"
+
+  - name: "copy current run_conf file before modification"
+    copy:
+      src: "{{ current_run_conf_file }}"
+      dest: "{{ current_run_conf_file_mod }}"
+
+  - name: remove all known lines in original run_conf file
+    lineinfile:
+      dest: "{{ original_run_conf_file_mod }}"
+      regexp: "{{item}}"
+      state: absent
+    with_items: "{{exclude_lines}}"
+
+  - name: remove all known lines in current run_conf file
+    lineinfile:
+      dest: "{{ current_run_conf_file_mod }}"
+      regexp: "{{item}}"
+      state: absent
+    with_items: "{{exclude_lines}}"
+
+  - block:
+      - name: find diffs between the two config files
+        shell: diff {{ original_run_conf_file_mod }} {{ current_run_conf_file_mod }}
+        register: command_result
+      - debug: 
+          msg: "current run_conf file is identical with original run_conf file"
+    rescue:
+      - name: "create diff file"
+        copy:
+          content: "{{ command_result.stdout }}"
+          dest: "{{ diff_file }}"
+      - debug: 
+          msg: |
+              "current run_conf file is not identical with original run_conf file 
+               see {{backup_dir}}/{{inventory_hostname}}/diff.txt for differences"
+    always:
+      - name: remove modified original run_conf file
+        file: path={{ original_run_conf_file_mod }} state=absent
+      - name: remove modified current run_conf file
+        file: path={{ current_run_conf_file_mod }} state=absent

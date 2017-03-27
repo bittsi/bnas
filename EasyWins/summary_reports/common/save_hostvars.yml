@@ -1,0 +1,9 @@
+#
+# Dump hostvars into a yaml-file
+# 
+# Include it in an Ansible play
+#
+---
+- template: src="save_hostvars.j2" dest="{{results}}/{{inventory_hostname}}.yml"
+  vars:
+    allhosts: "{{hostvars}}" 

@@ -1,0 +1,17 @@
+---
+switchType: WS-C2960X-24PD-L; Stack, 1 Stackmember
+switchProvisioning: ws-c2960x-24fpd-l
+stackMembers: 1
+accessPorts: 24
+uplinkPorts1G_range:
+  - 25
+  - 26
+uplinkPorts1G_used: 
+  - '1/0/25'
+  - '1/0/26'
+uplinkPorts10G_range:
+  - 1
+  - 2
+uplinkPorts10G_used: 
+  - '1/0/1'
+  - '1/0/2'

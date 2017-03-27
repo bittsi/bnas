@@ -1,0 +1,20 @@
+! ------------------------------------------------------------------
+! Start Template: {{ self._TemplateReference__context.name }}
+!
+!
+mls qos
+!
+!RT (Q1/T3) - DSCP 40 (CS5), DSCP 46 (EF)
+mls qos srr-queue output dscp-map queue 1 threshold 3 46
+!
+!NC (Q2/T3) - DSCP 48 (CS6), DSCP 56 (CS7)
+mls qos srr-queue output dscp-map queue 2 threshold 3 48 56
+!
+!BU (Q3/T3) - CS2 (DSCP 16), AF21-23 (DSCP 18, 20, 22)
+mls qos srr-queue output dscp-map queue 3 threshold 3 16 18
+!
+!
+!
+! End Template: {{ self._TemplateReference__context.name }}
+! ------------------------------------------------------------------
+

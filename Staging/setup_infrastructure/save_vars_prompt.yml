@@ -1,0 +1,7 @@
+#
+# Dump vars_prompt for this service into a yaml-file
+# 
+# Include it in an Ansible play
+#
+---
+- template: src="save_vars_prompt.j2" dest="{{inventory_dir}}/service_vars/terminalserver.yml"

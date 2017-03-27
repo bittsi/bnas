@@ -1,0 +1,26 @@
+#
+# Read data to create a simple HW/SW-Report for NX-OS, IOS and IOS-XE devices
+#
+# Idea and Code-Snipplet partly taken from https://github.com/ipspace/ansible-examples
+# 
+# By default the data is directly gathered from each device.
+# and the report is written into a textfile. Reports are always based on templates.
+#
+# Exta variables can be used to overwrite the default settings
+#   input   - from where the data is read (from device directly or from vars)
+#   format  - template format (e.g. html)
+# 
+# 
+---
+- name:  "Hardware-Software Report: Read data. Create report."
+  hosts: all
+  vars:
+  - reports: "{{inventory_dir}}/reports"  # Directory where the results from device read are stored
+  - results: "{{inventory_dir}}/results"  # Directory where the reports are stored
+  - modulename: hw_sw                     # The name of the module/reports. Definedd for generic/reusable playbooks
+  
+  tasks:
+  - include: "{{modulename}}/read_{{input|default('device_'~os)}}.yml"
+  - include: "common/save_hostvars.yml"
+  - include: "common/get_datetime.yml"
+  - include: "{{modulename}}/report_{{format|default('text')}}.yml"

@@ -1,0 +1,34 @@
+#
+# Backup original running-config (saved right after merge operation).
+# This config file will be used later to verify that there were no manually changes made on the device.
+#
+---
+- name: backup original running config
+  hosts: all
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "{{inventory_dir}}/system_vars/vars.yml"
+    - "{{inventory_dir}}/service_vars/{{inventory_hostname}}.yml"
+
+  vars:
+    device_backup_dir: "{{backup_dir}}/{{inventory_hostname}}"
+    provider:
+      host: "{{oob_ip}}"
+      username: "{{adminUID}}"
+      password: "{{adminPW}}"
+      transport: cli
+
+  tasks:
+  - name: remove potentially existing previous backup config directory
+    file: path={{device_backup_dir}} state=absent
+
+  - name: create backup config directory
+    file: path={{device_backup_dir}} state=directory
+
+  - include: "{{ inventory_dir }}/common/backup_run_conf.yml" 
+    vars:
+      file_name: "{{device_backup_dir}}/{{inventory_hostname}}_original_run.conf"
+
+
+  

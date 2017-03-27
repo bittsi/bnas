@@ -1,0 +1,10 @@
+#
+# Dump vars for this service into a yaml-file
+# 
+# Include it in an Ansible play
+#
+---
+- name: save OoB IP address to service_vars file
+  template: src="save_vars.j2" dest="{{inventory_dir}}/service_vars/{{inventory_hostname}}.yml"
+  vars:
+    allhosts: "{{hostvars}}" 

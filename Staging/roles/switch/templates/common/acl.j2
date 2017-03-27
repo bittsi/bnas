@@ -1,0 +1,21 @@
+! ------------------------------------------------------------------
+! Start Template: {{ self._TemplateReference__context.name }}
+!
+!
+{% for key, value in acl.items() %}
+access-list {{key}} remark {{ value.remark }} 
+{% for entry in value['permit'] %}
+access-list {{key}} permit {{ entry }}
+{% endfor %}
+{% if value['deny'] is defined %}
+{% for entry in value['deny'] %}
+access-list {{key}} deny {{ entry }}
+{% endfor %}
+{% endif %}
+!
+{% endfor %}
+!
+!
+! End Template: {{ self._TemplateReference__context.name }}
+! ------------------------------------------------------------------
+

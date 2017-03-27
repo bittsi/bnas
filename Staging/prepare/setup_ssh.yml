@@ -1,0 +1,18 @@
+#
+# Assert that device is in initial config dialog and configure ssh connection via terminalserver.
+# Get OoB IP Addr of the device which was assigned by DHCP.
+#
+# On Termialserver disconnect-character must be set to $ on vty lines
+#
+---
+- name:  "configure switch via terminalserver to get ready for ssh connections"
+  hosts: access
+  vars_files:
+    - "{{inventory_dir}}/service_vars/terminalserver.yml"
+
+  tasks:
+  - include: tasks/terminalserver_assert_tasks.yml
+  - include: tasks/terminalserver_prepare_tasks.yml
+  - include: tasks/getOoB-IP_tasks.yml
+
+

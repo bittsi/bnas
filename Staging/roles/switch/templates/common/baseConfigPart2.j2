@@ -1,0 +1,88 @@
+! ------------------------------------------------------------------
+! Start Template: {{ self._TemplateReference__context.name }}
+!
+!
+no banner exec 
+banner exec /
+                     
+Customer Name:  {{ customerName }}
+Switch Name:    {{ devName }}
+Switch Model:   {{ switchType }}
+Location:       {{ location.street }} {{ location.postCode }} {{ location.location }}
+
+*******************************************************************
+*                                                                 *
+*            UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED           *
+*                                                                 *
+*                                                                 *
+*   NOTICE:  Access to this device is restricted to authorized    *
+*            agents of Swisscom (Switzerland) Ltd. only.          *
+*                                                                 *
+*            Accessing this device for any reason without         *
+*            appropriate authorization is not permitted.          *
+*                                                                 *
+*******************************************************************
+/
+no banner motd 
+banner motd /
+***************************************************************
+*                                                             *
+*        UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED           *
+*                                                             *
+***************************************************************
+/
+!
+alias exec srb show run | begin
+alias exec sri show run | include
+alias exec w copy running-config startup-config
+alias exec v show running-config
+alias exec b show ip interface brief
+alias exec c configure terminal
+!
+line con 0
+ exec-timeout 20 0
+ vacant-message /
+
+Your login time is expired !
+If you need my services again, hit <RETURN> to call me back.
+
+
+
+/
+ stopbits 1
+ flowcontrol software
+!
+line vty 0 4
+ access-class 1 in
+ exec-timeout 20 0
+ vacant-message /
+
+Your login time is expired !
+If you need my services again, hit <RETURN> to call me back.
+
+/
+ logging synchronous
+ transport preferred none
+ transport input telnet ssh
+ transport output telnet ssh
+line vty 5 15
+ access-class 1 in
+ exec-timeout 20 0
+ vacant-message /
+
+Your login time is expired !
+If you need my services again, hit <RETURN> to call me back.
+
+/
+ logging synchronous
+ transport preferred none
+ transport input telnet ssh
+ transport output telnet ssh
+!
+ntp source {{ mgmtInt }}
+ntp server {{ ntpServer1 }} prefer
+!
+!
+! End Template: {{ self._TemplateReference__context.name }}
+! ------------------------------------------------------------------
+

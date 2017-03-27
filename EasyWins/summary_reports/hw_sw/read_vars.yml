@@ -1,0 +1,6 @@
+# Reads device facts from a YAML file instead of gathering them from the device
+# 
+# Include it in an Ansible play
+#
+---
+- include_vars: "{{results}}/{{inventory_hostname}}.yml"

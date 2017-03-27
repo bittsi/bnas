@@ -1,0 +1,84 @@
+! ------------------------------------------------------------------
+! Start Template: {{ self._TemplateReference__context.name }}
+!
+!
+service config
+no service pad
+service timestamps debug datetime msec localtime show-timezone
+service timestamps log datetime msec localtime show-timezone
+service password-encryption
+!
+hostname {{ devName }}
+!
+boot-start-marker
+boot-end-marker
+!
+logging buffered 128000
+logging reload errors
+logging trap warnings
+!
+enable secret {{ enablePW }}
+!
+username {{ adminUID }} privilege 15 password {{ adminPW }}
+aaa new-model
+!
+no aaa authentication fail-message
+aaa authentication fail-message /
+***************************************************************
+*                                                             *
+*          Unauthorized login attempt, event logged.          *
+*                                                             *
+*          UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED         *
+*                                                             *
+***************************************************************
+/
+!
+aaa authentication login default local
+aaa authorization exec default local
+!
+aaa session-id common
+!
+clock timezone MET 1 0
+clock summer-time MEST recurring last Sun Mar 2:00 last Sun Oct 3:00
+!
+ip domain-name {{ domainName }}
+no ip domain-lookup
+!
+ip host tftp {{ tftpServer }}
+!
+vtp domain {{vtpDomain}}
+vtp mode transparent
+!
+no setup express
+!
+archive
+ path flash:
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+port-channel load-balance src-dst-ip
+!
+vlan internal allocation policy ascending
+!
+{% for key, value in vlanGrp.items() %}
+vlan group {{ value.groupName }} vlan-list {{ value.vlanList }}
+{% endfor %}
+!
+{% set commajoiner  = joiner(',') %}
+{% set vlancmd = 'vlan ' %}
+{{ vlancmd }}
+{%- for key, value in vlanGrp.items() %}
+{{- commajoiner() -}} {{- value.vlanList -}}
+{%- endfor %}
+
+!
+ip telnet source-interface {{ mgmtInt }}
+ip ftp source-interface {{ mgmtInt }}
+ip tftp source-interface {{ mgmtInt }}
+ip ssh source-interface {{ mgmtInt }}
+!
+!
+! End Template: {{ self._TemplateReference__context.name }}
+! ------------------------------------------------------------------
+

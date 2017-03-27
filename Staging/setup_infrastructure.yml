@@ -1,0 +1,15 @@
+#
+# This playbook is used to setup the staging service.
+#
+# Files in service_vars will be created. The static infrastructure parameters are stored in infrastructure_vars and are used
+# to create the service_vars.
+#
+# For demo purposes the files will be saved in cleartext.
+# You can leave the username and password as defaults and overwrite them with extra-vars when running the playbook "staging.yml".
+#
+# Dependencies:
+# To configure the devices, this playbook must have been run before the playbook "staging.yml".
+#
+---
+- include: setup_infrastructure/setup_terminalserver.yml
+

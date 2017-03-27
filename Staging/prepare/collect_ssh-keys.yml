@@ -1,0 +1,31 @@
+#
+# Get ssh key and add it to the known hosts
+#
+---
+- name: collect keys and add them to known_hosts
+  hosts: access
+  gather_facts: no
+  connection: local
+  vars:
+    - known_hosts: "~/.ssh/known_hosts"
+  vars_files:
+    - "{{inventory_dir}}/service_vars/{{inventory_hostname}}.yml"
+
+  tasks:
+    - name: scan and register for ssh keys
+      command: "ssh-keyscan {{oob_ip}}"
+      register: "host_keys"
+      changed_when: false
+
+    - file: path={{known_hosts}} state=touch
+      run_once: true
+
+    - blockinfile:
+        dest: "{{known_hosts}}"
+        marker: "# {mark} This part managed by Ansible"
+        block: |
+          {% for h in ansible_play_hosts if hostvars[h].host_keys is defined %}
+          {{ hostvars[h].host_keys.stdout }}
+          {% endfor %}
+      run_once: true
+

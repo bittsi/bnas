@@ -1,0 +1,15 @@
+! ------------------------------------------------------------------
+! Start Template: {{ self._TemplateReference__context.name }}
+!
+!
+ip ssh maxstartups 50
+ip ssh source-interface {{ mgmtInt }}
+ip ssh version 2
+ip ssh dscp 48
+!
+ip scp server enable
+!
+!
+! End Template: {{ self._TemplateReference__context.name }}
+! ------------------------------------------------------------------
+

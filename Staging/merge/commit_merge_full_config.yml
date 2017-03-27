@@ -1,0 +1,32 @@
+#
+# Merge a full configuration (generated) with the current config on a device
+# Copy the the generated config file to another location for traceability
+#
+---
+- name: merge config with full configuration
+  hosts: all
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "{{inventory_dir}}/system_vars/vars.yml"
+    - "{{inventory_dir}}/service_vars/{{inventory_hostname}}.yml"
+
+  tasks:
+  - name: "save config file into {{configlog_dir}}"
+    copy:
+      src: "{{config_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_full.conf"
+      dest: "{{configlog_dir}}/{{inventory_hostname}}_full-conf_{{datetime}}.conf"
+  - name: merge full config with napalm
+    napalm_install_config:
+      hostname: "{{oob_ip}}"
+      username: "{{adminUID}}"
+      dev_os: "{{dev_os}}"
+      password: "{{adminPW}}"
+      timeout: 120
+      config_file: "{{config_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_full.conf"
+      commit_changes: "True"
+      replace_config: "False"
+      optional_args: {'global_delay_factor': 4}
+      diff_file: "{{configlog_dir}}/{{inventory_hostname}}_full-diff_{{datetime}}.diff"
+
+

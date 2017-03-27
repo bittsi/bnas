@@ -1,0 +1,76 @@
+---
+customerName: BNAS Test customer
+domainName: bnas.local
+
+vtpDomain: vtp
+
+enablePW: pass
+adminUID: admin
+adminPW: pass
+
+tftpServer: 1.1.1.1
+loggingServer: 2.2.2.2
+
+snmp:
+        server1: 3.3.3.3
+        server2: 4.4.4.4
+        roCommunity: roCommunity
+        rwCommunity: rwCommunity
+        roCommunityCustomer: roCommunityCustomer
+
+
+acl:
+        1:
+                remark: "*** VTY ACL ***"
+                permit:
+                        - 0.0.0.0 255.255.255.255
+
+        20:
+                remark: "*** SNMP Customer RO-Access ***"
+                permit:
+                        - 11.11.11.0 0.0.0.255
+
+        81:
+                remark: "*** SNMP RO-Access ***"
+                permit:
+                        - 1.1.1.0 0.0.0.255
+                        - 2.2.2.0 0.0.0.255
+                deny:
+                        - 3.3.3.0 0.0.0.255
+        82: 
+                remark: "*** SNMP RW-Access ***"
+                permit:
+                        - 4.4.4.0 0.0.0.255
+                        - 5.5.5.0 0.0.0.255
+                deny:
+                        - 6.6.6.0 0.0.0.255
+
+vlanListName: 1001,1190
+
+# No - allowed in variable names, therefore 2 level dictionary
+vlanGrp:
+        0:
+                groupName: VLANGRP0
+                vlanList: 1000
+        1:
+                groupName: VLANGRP0
+                vlanList: 1001
+        2:
+                groupName: VLANGRP0
+                vlanList: 1002
+        3:
+                groupName: VLANGRP0
+                vlanList: 1003
+        4:
+                groupName: VLANGRP0       
+                vlanList: 1004
+        5:
+                groupName: VLANGRP0
+                vlanList: 1005
+        6:
+                groupName: VLANGRP0  
+                vlanList: 1006
+        7:
+                groupName: VLANGRP0  
+                vlanList: 1007
+

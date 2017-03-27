@@ -1,0 +1,35 @@
+#
+# Configure ssh
+# 
+# Include it in an Ansible play
+#
+---
+- name: configure minimal needed paramters for SSH and generate crypto key
+  expect:
+    command: ssh -l {{ts_username}} {{ts_hostname}}
+    timeout: 10
+    responses:
+      'password:': "{{ts_password}}"
+      'Your selection:': 
+        - "p{{ts_port}}"
+      '.*Open': 
+        - "\r\n"
+      '.*Switch>':
+        - "enable"
+      '.*Switch#':
+        - "conf t"
+      '.*Switch\(config\)#':
+        - "ip domain-name staging"
+        - "crypto key generate rsa modulus 1024"
+        - "username {{adminUID}} privilege 15 password {{adminPW}}"
+        - "line vty 0 15"
+      '.*Switch\(config-line\)#':
+        - "login local"
+        - "end\rexit\r$"
+    echo: yes
+
+
+
+
+      
+

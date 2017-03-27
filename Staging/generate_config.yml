@@ -1,0 +1,6 @@
+---
+- include: generate/generate_switch_config.yml
+
+
+
+

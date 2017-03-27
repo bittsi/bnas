@@ -1,0 +1,6 @@
+Hostname             HW-Type              OS-Type    SW-Version     
+Lab_Access-23        WS-C3560CG-8PC-S     IOS        12.2(55)EX2    
+Lab_Access-25        WS-C3650-24PD        IOS-XE     03.03.03SE     
+Lab_Core-1           WS-C4500X-16         IOS-XE     03.08.02.E     
+Pod_N5k-1            Nexus5548 Chassis    NX-OS      7.3(1)N1(1)    
+Pod_N5k-2            Nexus5548 Chassis    NX-OS      7.3(1)N1(1)    

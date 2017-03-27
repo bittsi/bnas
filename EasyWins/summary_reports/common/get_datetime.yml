@@ -1,0 +1,10 @@
+#
+# Get current date and time and add it to facts
+# 
+# Include it in an Ansible play
+#
+---
+- set_fact:
+    datetime="{{lookup('pipe','date \"+%Y-%m-%d %H:%M\"')}}"
+  run_once: true
+

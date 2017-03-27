@@ -1,0 +1,29 @@
+---
+devName: "{{inventory_hostname}}"
+
+location:
+   street: 'Strasse 11'
+   postCode: CH-2411
+   location: Ort
+
+mgmt:
+   ip: 10.82.10.232
+   mask: 255.255.255.0
+   gw: 10.82.10.1
+
+ntpServer1: 8.8.8.8
+greyRange: 8.8.8.0 0.0.0.255
+
+dataVLAN: 1000
+voiceVLAN: 1001
+
+trunkIntContains: Te1/0/1
+
+vlanGrp:
+    0:
+      groupName: VLANGRP0
+      vlanList: 1000
+    1:
+      groupName: VLANGRP1
+      vlanList: 1001
+

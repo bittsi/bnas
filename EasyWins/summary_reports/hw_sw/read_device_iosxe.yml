@@ -1,0 +1,16 @@
+
+#
+# Read show version with ios_command on IOS-XE device
+# 
+# Include it in an Ansible play
+#
+---
+- ios_command:
+      provider: "{{ cli }}"
+      commands: "show version"
+  register: result
+- set_fact:
+    sw_version: "{{result.stdout[0] | regex_search('Version\\s+(?P<version>\\S+) RELEASE','\\g<version>') | join}}"
+    os_type: "IOS-XE"
+    hw_type: "{{result.stdout[0] | regex_search('(?P<type>WS[A-Za-z0-9\\-]+)\\s+','\\g<type>') | join}}"
+

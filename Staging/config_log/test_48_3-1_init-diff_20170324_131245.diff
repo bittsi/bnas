@@ -1,0 +1,23 @@
++service config
++hostname test_48_3-1
++no ip http server
++no ip http secure-server
+-hostname Switch
+-ip domain-name staging
+-vlan 45,123,1000-1001
+-ip tftp source-interface FastEthernet0
+-interface GigabitEthernet1/0/49
+-interface GigabitEthernet1/0/50
+-interface GigabitEthernet2/0/49
+-interface GigabitEthernet2/0/50
+-interface GigabitEthernet3/0/49
+-interface GigabitEthernet3/0/50
+-ip http server
+-ip http secure-server
+line vty 0 4
+ -exec-timeout 0 0
+line vty 5 15
+ -exec-timeout 0 0
+-ntp server pool.ntp.org
+-pnp profile pnp_redirection_profile
+ -transport http ipv4 127.0.0.1 port 80

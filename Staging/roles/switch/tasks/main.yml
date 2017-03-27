@@ -1,0 +1,22 @@
+---
+# Generate config for access switches
+- block:
+    - name: generate access switch initial configuration file used for config replacement
+      template: src=access/accessInitMain.j2 dest={{config_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_init.conf
+    - name: generate access switch full configuration file used for config merge
+      template: src=access/accessFullMain.j2 dest={{config_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_full.conf
+  when: "'access' in group_names"
+
+
+# Generate config for concentrator switches
+- block:
+    - name: generate concentrator configuration file
+      template: src=concentrator/concentratorMain.j2 dest={{config_dir}}/{{inventory_hostname}}/{{inventory_hostname}}.conf
+  when: "'concentrator' in group_names"
+
+
+# Generate config for core switches
+- block:
+    - name: generate core configuration file
+      template: src=core/coreMain.j2 dest={{config_dir}}/{{inventory_hostname}}/{{inventory_hostname}}.conf
+  when: "'core' in group_names"

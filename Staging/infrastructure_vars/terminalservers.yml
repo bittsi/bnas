@@ -1,0 +1,8 @@
+---
+terminalservers:
+  1:
+    hostname: "10.82.1.56"
+  2:
+    hostname: "10.82.1.57"
+  3:
+    hostname: "10.82.1.58"

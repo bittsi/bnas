@@ -1,0 +1,30 @@
+#
+# Replace config on the device with init config (generated)
+#
+---
+- name: replace config with init configuration
+  hosts: all
+  connection: local
+  gather_facts: no
+  vars_files:
+    - "{{inventory_dir}}/system_vars/vars.yml"
+    - "{{inventory_dir}}/service_vars/{{inventory_hostname}}.yml"
+
+ 
+  tasks:
+  - name: push initial configuration with napalm
+    napalm_install_config:
+      hostname: "{{oob_ip}}"
+      username: "{{adminUID}}"
+      dev_os: "{{dev_os}}"
+      password: "{{adminPW}}"
+      config_file: "{{config_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_init.conf"
+      commit_changes: True
+      replace_config: True
+      optional_args: {'global_delay_factor': 4}
+      diff_file: "{{configlog_dir}}/{{inventory_hostname}}_init-diff_{{datetime}}.diff"
+  - name: "save config file into {{configlog_dir}}"
+    copy:
+      src: "{{config_dir}}/{{inventory_hostname}}/{{inventory_hostname}}_init.conf"
+      dest: "{{configlog_dir}}/{{inventory_hostname}}_init-conf_{{datetime}}.conf"
+

@@ -1,0 +1,10 @@
+
+#
+# This module creates a html file from a Jinja2 template
+#
+---
+- template: src="html.j2" dest="{{reports}}/{{modulename}}.html"
+  vars: 
+    allhosts: "{{hostvars}}"
+  run_once: true
+

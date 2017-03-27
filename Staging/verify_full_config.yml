@@ -1,0 +1,9 @@
+---
+- include: verify/backup_current_run_config.yml
+- include: verify/check_for_diffs.yml
+
+
+
+
+
+

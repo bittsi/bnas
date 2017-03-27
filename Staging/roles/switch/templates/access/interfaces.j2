@@ -1,0 +1,73 @@
+! ------------------------------------------------------------------
+! Start Template: {{ self._TemplateReference__context.name }}
+!
+!
+{% set uplinkType = '' %}
+{% set uplinkTypeRange = '' %}
+{% set uplinkTypeRange_used = '' %}
+{% if 'Gi' in trunkIntContains %}
+{% set uplinkType = 'GigabitEthernet' %}
+{% set uplinkTypeRange = uplinkPorts1G_range %}
+{% set uplinkTypeRange_used = uplinkPorts1G_used %}
+{% elif 'Te' in trunkIntContains %}
+{% set uplinkType = 'TenGigabitEthernet' %}
+{% set uplinkTypeRange = uplinkPorts10G_range %}
+{% set uplinkTypeRange_used = uplinkPorts10G_used %}
+{% endif %}
+!
+{% for switch in range(1,stackMembers + 1) -%}
+{% for port in range(1,accessPorts + 1) -%}  
+interface GigabitEthernet{{switch}}/0/{{port}}
+ description <LS:C> *** Access Port ***
+ switchport access vlan {{ dataVLAN }}
+ switchport mode access
+ switchport nonegotiate
+ switchport voice vlan {{ voiceVLAN }}
+ no logging event link-status
+ srr-queue bandwidth share 1 1 15 83
+ priority-queue out 
+ no snmp trap link-status
+ storm-control broadcast level 1.00
+ storm-control multicast level 5.00
+ storm-control action shutdown
+ storm-control action trap
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ spanning-tree guard root
+ no cdp enable
+!
+{% endfor -%}
+{% for port in uplinkTypeRange -%}
+interface {{uplinkType}}{{switch}}/0/{{port}}
+{% if switch~'/0/'~port in uplinkTypeRange_used %}
+ description *** Uplink Port ***
+ switchport mode trunk
+ switchport nonegotiate
+ srr-queue bandwidth share 1 1 15 83
+ priority-queue out
+ mls qos trust dscp
+ udld port aggressive
+ logging event trunk-status
+ channel-group 1 mode active
+!
+{% else %}
+ description *** not used ***
+ shutdown
+!
+{% endif %}
+{% endfor -%}
+{% endfor -%}
+!
+interface Port-channel1
+ description *** Uplink Port ***
+ switchport mode trunk
+ switchport nonegotiate
+ logging event trunk-status
+ ip dhcp snooping trust 
+ ip dhcp snooping limit rate 500
+ no shutdown
+!
+!
+! End Template: {{ self._TemplateReference__context.name }}
+! ------------------------------------------------------------------
+

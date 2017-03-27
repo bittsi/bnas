@@ -1,0 +1,36 @@
+#
+# SCP and archive path must be configured to for replace/merge config operations
+# Self signed certificates are removed. Otherwise there could be too many diffs which could abort the operation.
+#
+---
+- name:  "prepare switch for config replacement"
+  hosts: access
+  gather_facts: no
+  connection: local
+  vars_files:
+    - "{{inventory_dir}}/service_vars/{{inventory_hostname}}.yml"
+  vars:
+    provider:
+      host: "{{oob_ip}}"
+      username: "{{adminUID}}"
+      password: "{{adminPW}}"
+      transport: cli
+
+  tasks:
+  - name: remove self-signed certificate and enable scp server
+    ios_config:
+      provider: "{{ provider }}"
+      lines:
+        - "ip scp server enable"
+        - "no crypto pki certificate pool\ryes"
+  - name: set archive path
+    ios_config:
+      provider: "{{ provider }}"
+      lines:
+        - 'path flash:/'
+      parents: archive
+  - ios_config:
+      provider: "{{ provider }}"
+      lines:
+        - "no crypto pki certificate pool\ryes"
+

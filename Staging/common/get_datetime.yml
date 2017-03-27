@@ -1,0 +1,14 @@
+#
+# Get current date and time and add it to facts
+#
+---
+- name:  "get current date and time, format it and set it as fact"
+  hosts: all
+  gather_facts: yes
+  connection: local
+
+  tasks:
+  # Convert from 2017-02-27 17:06:14 to 20170227_170614
+  - name: set formatted datetime as fact
+    set_fact:
+      datetime: "{{ (ansible_date_time.date~'_'~ansible_date_time.time) | regex_replace('-', '') | regex_replace(':', '') | join}}"
