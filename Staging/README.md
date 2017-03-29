@@ -9,7 +9,7 @@ The playbook "staging.yml" does the following:
 - Prepares the switches for SSH connections (connects via terminalserver) and gets the switches ready for config replacement (e.g. archive flash, remove certificate) -> tag "prepare"
 - Replaces the initial config on the switches (the replacement file must be a complete configuration) -> tag "replace"
 - Merges the full config on the switches and saves the running config as a backup config afterwards-> tag "merge"
-- Verifies that the current running config is equal to the original running config (saved right after merge operation)
+- Verifies that the current running config is equal to the original running config (saved right after merge operation) -> tag "verify"
 
 
 The above listed jobs are defined in playbooks. Each of these playbooks can be run individually or invoked with tags (see Usage).
