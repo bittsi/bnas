@@ -47,11 +47,11 @@ Just for fun there is custom callback plugin for slack (custom_slack.py) in the 
 
 ## Slack usage
 ### Environment variables
-**Mandatory**
+**Mandatory:**
 
 `export SLACK_WEBHOOK_URL=<webhook_url>`
 
-**Optional**
+**Optiona:l**
 
 `export SLACK_CHANNEL=<channel>`
 
@@ -62,7 +62,6 @@ Just for fun there is custom callback plugin for slack (custom_slack.py) in the 
 `ansible-playbook staging.yml --extra_vars "callback=slack"`
 
 ### Enable Slack plugin and display more details
-
 `ansible-playbook staging.yml --extra-vars "callback=slack slack_details=True"`
 
 
