@@ -55,8 +55,6 @@ Just for fun there is custom callback plugin for slack (custom_slack.py) in the 
 
 `export SLACK_CHANNEL=<channel>`
 
-`export SLACK_INVOCATION=True`
-
 
 ### Enable Slack plugin
 `ansible-playbook staging.yml --extra_vars "callback=slack"`

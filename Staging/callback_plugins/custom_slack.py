@@ -43,7 +43,6 @@ class CallbackModule(CallbackBase):
         SLACK_WEBHOOK_URL (required): Slack Webhook URL
         SLACK_CHANNEL     (optional): Slack room to post in. Default: #ansible
         SLACK_USERNAME    (optional): Username to post as. Default: ansible
-        SLACK_INVOCATION  (optional): Show command line invocation
                                       details. Default: False
 
     Requires:
@@ -80,9 +79,8 @@ class CallbackModule(CallbackBase):
         self.webhook_url = os.getenv('SLACK_WEBHOOK_URL')
         self.channel = os.getenv('SLACK_CHANNEL', '#ansible')
         self.username = os.getenv('SLACK_USERNAME', 'ansible')
-        self.show_invocation = mk_boolean(
-            os.getenv('SLACK_INVOCATION', self._display.verbosity > 1)
-        )
+        self.show_invocation = True
+
 
 #        if self.webhook_url is None:
 #            self.disabled = True
@@ -98,7 +96,6 @@ class CallbackModule(CallbackBase):
         self.extra_vars = None
         self.slack_details = False
         self.bla_url = None
-
 
         # This is a 6 character identifier provided with each message
         # This makes it easier to correlate messages when there are more
