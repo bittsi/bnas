@@ -18,7 +18,7 @@ The above listed jobs are defined in playbooks. Each of these playbooks can be r
 To configure the devices the playbook "setup_infrastructure.yml" must have been run before playbook "staging.yml".
 
 ## Slack Integration
-Just for fun there is custom callback plugin for slack (custom_slack.py) in the folder "callback_plugins". To enable the plugin and to specify the depth of the output messages use extra-vars (see [Slack sage](#slack-usage)).
+Just for fun there is custom callback plugin for slack (custom_slack.py) in the folder "callback_plugins". To enable the plugin and to specify the depth of the output messages use extra-vars (see [Slack usage](#slack-usage)).
 
 ## Usage
 ### Run this playbook first
@@ -48,11 +48,15 @@ Just for fun there is custom callback plugin for slack (custom_slack.py) in the 
 ## Slack usage
 ### Environment variables
 **Mandatory**
+
 `export SLACK_WEBHOOK_URL=<webhook_url>`
 
 **Optional**
+
 `export SLACK_CHANNEL=<channel>`
+
 `export SLACK_INVOCATION=True`
+
 
 ### Enable Slack plugin
 `ansible-playbook staging.yml --extra_vars "callback=slack"`
