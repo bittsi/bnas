@@ -9,7 +9,8 @@
 #
 #  https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins/callback
 #
-# Invoke ansible-playbook with --extra-vars "slack_details=true" to see the plays and the tasks
+# Invoke ansible-playbook with --extra-vars "callback=slack" to enable the plugin
+# Invoke ansible-playbook with --extra-vars "callback=slack" "slack_details=true" to see the plays and the tasks
 
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
