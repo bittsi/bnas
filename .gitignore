@@ -2,4 +2,6 @@ vault.yml
 EasyWins/summary_reports/results/*.yml
 TryAndError/
 DataModels/
-
+Staging/config_backup
+Staging/config_generated
+Staging/config_log

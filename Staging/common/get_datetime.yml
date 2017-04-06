@@ -6,7 +6,7 @@
   hosts: all
   gather_facts: yes
   connection: local
-
+  
   tasks:
   # Convert from 2017-02-27 17:06:14 to 20170227_170614
   - name: set formatted datetime as fact

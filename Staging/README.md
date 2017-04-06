@@ -12,10 +12,13 @@ The playbook "staging.yml" does the following:
 - Verifies that the current running config is equal to the original running config (saved right after merge operation) -> tag "verify"
 
 
-The above listed jobs are defined in playbooks. Each of these playbooks can be run individually or invoked with tags (see Usage).
+The above listed jobs are defined in playbooks. Each of these playbooks can be run individually or invoked with tags (see [Usage](#usage)).
 
 ## Dependencies
 To configure the devices the playbook "setup_infrastructure.yml" must have been run before playbook "staging.yml".
+
+## Slack Integration
+Just for fun there is custom callback plugin for slack (custom_slack.py) in the folder "callback_plugins". To enable the plugin and to specify the depth of the output messages use extra-vars (see [Slack sage](#slack-usage)).
 
 ## Usage
 ### Run this playbook first
@@ -41,3 +44,18 @@ To configure the devices the playbook "setup_infrastructure.yml" must have been 
 
 ### Run playbooks "generate" and "merge"  for a single switch with credentials for terminalserver specified
 `ansible-playbook staging.yml --tags "generate,merge" --limit "test_48_3-1" --extra-vars "ts_username=name ts_password=pwd"`
+
+## Slack usage
+### Environment variables
+**Mandatory**
+`export SLACK_WEBHOOK_URL=<webhook_url>`
+
+**Optional**
+`export SLACK_CHANNEL=<channel>`
+`export SLACK_INVOCATION=True`
+
+### Enable Slack plugin
+`ansible-playbook staging.yml --extra_vars "callback=slack"`
+
+### Enable Slack plugin and display more details
+ansible-playbook staging.yml --extra-vars "callback=slack slack_details=True"

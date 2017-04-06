@@ -9,7 +9,6 @@
   gather_facts: no
   vars_files:
     - "{{inventory_dir}}/system_vars/vars.yml"
-    - "{{inventory_dir}}/service_vars/{{inventory_hostname}}.yml"
 
   vars:
     device_backup_dir: "{{backup_dir}}/{{inventory_hostname}}"
@@ -20,6 +19,12 @@
       transport: cli
 
   tasks:
-    - include: "{{ inventory_dir }}/common/backup_run_conf.yml" 
-      vars:
-        file_name: "{{device_backup_dir}}/{{inventory_hostname}}_current_run.conf"
+  - name: include service_vars per device
+    include_vars: "{{ item }}"
+    with_first_found:
+      - "{{inventory_dir}}/service_vars/{{inventory_hostname}}.yml"
+      - "{{inventory_dir}}/service_vars/default.yml"
+  - name: "include task: backup running config"
+    include: "{{ inventory_dir }}/common/backup_run_conf.yml" 
+    vars:
+      file_name: "{{device_backup_dir}}/{{inventory_hostname}}_current_run.conf"
