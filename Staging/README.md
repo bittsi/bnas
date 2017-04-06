@@ -51,7 +51,7 @@ Just for fun there is custom callback plugin for slack (custom_slack.py) in the 
 
 `export SLACK_WEBHOOK_URL=<webhook_url>`
 
-**Optiona:l**
+**Optional:**
 
 `export SLACK_CHANNEL=<channel>`
 
